@@ -26,7 +26,7 @@ import com.example.todocompose.ui.theme.TodoComposeTheme
 
 @Composable
 fun ListScreen() {
-
+    ListContent(todos = emptyList())
 }
 
 @Composable
