@@ -23,7 +23,7 @@ import com.example.todocompose.ui.theme.TodoComposeTheme
 
 @Composable
 fun AddEditScreen() {
-
+    AddEditContent()
 }
 
 @Composable

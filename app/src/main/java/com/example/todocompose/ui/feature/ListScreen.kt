@@ -25,17 +25,20 @@ import com.example.todocompose.ui.components.TodoItem
 import com.example.todocompose.ui.theme.TodoComposeTheme
 
 @Composable
-fun ListScreen() {
-    ListContent(todos = emptyList())
+fun ListScreen(
+    navigateToAddEditScreen: (id: Long?) -> Unit
+) {
+    ListContent(todos = emptyList(), onAddItemClick = navigateToAddEditScreen)
 }
 
 @Composable
 fun ListContent(
-    todos: List<Todo>
+    todos: List<Todo>,
+    onAddItemClick: (id: Long?) -> Unit
 ) {
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(onClick = { /*TODO*/ }) {
+            FloatingActionButton(onClick = { onAddItemClick(null) }) {
                 Icon(Icons.Default.Add, contentDescription = "Add")
             }
         }
@@ -44,7 +47,7 @@ fun ListContent(
             modifier = Modifier.consumeWindowInsets(padding),
             contentPadding = PaddingValues(16.dp),
         ) {
-            itemsIndexed(todos) {index, it ->
+            itemsIndexed(todos) { index, it ->
                 TodoItem(
                     todo = it,
                     onItemClick = {},
@@ -63,6 +66,6 @@ fun ListContent(
 @Composable
 fun ListContentPreview() {
     TodoComposeTheme {
-        ListContent(todos = listOf(todo1, todo2, todo3))
+        ListContent(todos = listOf(todo1, todo2, todo3), onAddItemClick = {})
     }
 }
