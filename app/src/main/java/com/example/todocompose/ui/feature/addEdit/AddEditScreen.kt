@@ -30,12 +30,14 @@ import com.example.todocompose.ui.theme.TodoComposeTheme
 
 @Composable
 fun AddEditScreen(
+    id: Long?,
     navigateBack: () -> Unit,
 ) {
     val context = LocalContext.current.applicationContext
     val database = TodoDatabaseProvider.provide(context).todoDao
     val viewModel = viewModel<AddEditViewModel> {
         AddEditViewModel(
+            todoId = id,
             repository = TodoRepositoryImpl(
                 dao = database
             )
