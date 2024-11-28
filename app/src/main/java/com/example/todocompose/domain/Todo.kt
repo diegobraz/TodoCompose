@@ -4,7 +4,7 @@ data class Todo(
     val id: Long,
     val title:String,
     val description:String? = null,
-    val isComplete:Boolean = false
+    val isComplete:Boolean
 )
 
 // fake objects

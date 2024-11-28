@@ -32,7 +32,8 @@ class TodoRepositoryImpl(
                 Todo(
                     id = entity.id,
                     title = entity.title,
-                    description = entity.description
+                    description = entity.description,
+                    isComplete = entity.isComplete
                 )
             }
         }
@@ -42,7 +43,8 @@ class TodoRepositoryImpl(
            Todo(
                id = entity.id,
                title = entity.title,
-               description = entity.description
+               description = entity.description,
+               isComplete = entity.isComplete
            )
        }
     }
