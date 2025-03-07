@@ -16,12 +16,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.todocompose.TodoRepositoryImpl
-import com.example.todocompose.data.TodoDatabaseProvider
 import com.example.todocompose.domain.Todo
 import com.example.todocompose.domain.todo1
 import com.example.todocompose.domain.todo2
@@ -29,23 +26,13 @@ import com.example.todocompose.domain.todo3
 import com.example.todocompose.navigation.AddEditRoute
 import com.example.todocompose.ui.UiEvent
 import com.example.todocompose.ui.components.TodoItem
-import com.example.todocompose.ui.feature.addEdit.AddEditViewModel
 import com.example.todocompose.ui.theme.TodoComposeTheme
 
 @Composable
 fun ListScreen(
-    navigateToAddEditScreen: (id: Long?) -> Unit
+    navigateToAddEditScreen: (id: Long?) -> Unit,
+    viewModel: ListViewModel
 ) {
-
-    val context = LocalContext.current.applicationContext
-    val database = TodoDatabaseProvider.provide(context).todoDao
-    val viewModel = viewModel<ListViewModel> {
-        ListViewModel(
-            repository = TodoRepositoryImpl(
-                dao = database
-            )
-        )
-    }
 
     val todos by viewModel.todos.collectAsState()
     LaunchedEffect(Unit){

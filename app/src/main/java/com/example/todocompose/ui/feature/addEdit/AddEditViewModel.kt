@@ -3,18 +3,24 @@ package com.example.todocompose.ui.feature.addEdit
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.todocompose.data.TodoRepository
 import com.example.todocompose.ui.UiEvent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AddEditViewModel(
-    private val todoId: Long? = null,
+@HiltViewModel
+class AddEditViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
     private val repository: TodoRepository
 ) : ViewModel() {
+
+    private val todoId: Long? = savedStateHandle["todoId"]
 
     var title by mutableStateOf("")
         private set

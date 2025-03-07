@@ -24,7 +24,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.todocompose.TodoRepositoryImpl
-import com.example.todocompose.data.TodoDatabaseProvider
 import com.example.todocompose.ui.UiEvent
 import com.example.todocompose.ui.theme.TodoComposeTheme
 
@@ -32,17 +31,8 @@ import com.example.todocompose.ui.theme.TodoComposeTheme
 fun AddEditScreen(
     id: Long?,
     navigateBack: () -> Unit,
+    viewModel: AddEditViewModel
 ) {
-    val context = LocalContext.current.applicationContext
-    val database = TodoDatabaseProvider.provide(context).todoDao
-    val viewModel = viewModel<AddEditViewModel> {
-        AddEditViewModel(
-            todoId = id,
-            repository = TodoRepositoryImpl(
-                dao = database
-            )
-        )
-    }
 
     val title = viewModel.title
     val description = viewModel.description
